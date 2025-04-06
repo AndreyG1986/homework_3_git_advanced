@@ -1,4 +1,7 @@
-def filter_by_state(users_info_list, state = 'EXECUTED', parameter_sort = True):
+def filter_by_state(users_info_list: list, state:str = 'EXECUTED', parameter_sort:bool = True) ->list:
+    """функция, которая принимает список словарей и опционально значение для ключа state
+    (по умолчанию 'EXECUTED'). Функция возвращает новый список словарей, содержащий только те
+    словари, у которых ключ state соответствует указанному значению."""
     # создаём пустой список
     state_list = []
     # начинаем перебирать словари
@@ -18,7 +21,10 @@ def filter_by_state(users_info_list, state = 'EXECUTED', parameter_sort = True):
     return state_list
 
 
-def sort_by_date(users_info_list):
+def sort_by_date(users_info_list: list) -> list:
+    """ функция sort_by_date, которая принимает список словарей и необязательный параметр,
+    задающий порядок сортировки (по умолчанию — убывание). Функция должна возвращать новый список,
+    отсортированный по дате (date)."""
     date = ""
     sorted_users_info_list = []
     # начинаем перебирать словари
