@@ -21,7 +21,7 @@ def filter_by_state(users_info_list: list, state:str = 'EXECUTED', parameter_sor
     return state_list
 
 
-def sort_by_date(users_info_list: list) -> list:
+def sort_by_date(users_info_list: list, parameter_sort_reverse:bool = True) -> list:
     """ функция sort_by_date, которая принимает список словарей и необязательный параметр,
     задающий порядок сортировки (по умолчанию — убывание). Функция должна возвращать новый список,
     отсортированный по дате (date)."""
@@ -38,8 +38,13 @@ def sort_by_date(users_info_list: list) -> list:
         #- `key=lambda x: x['date']` — здесь мы используем анонимную функцию
         # `lambda`, которая говорит `sorted()`,
         # что сортировать нужно по значению ключа `'date'` в каждом словаре.
-        sorted_users_info_list = sorted(
-            users_info_list, key=lambda x: x['date'], reverse=True
-            )
+        if parameter_sort_reverse == True:
+            sorted_users_info_list = sorted(
+                users_info_list, key=lambda x: x['date'], reverse=True
+                )
+        else:
+            sorted_users_info_list = sorted(
+                users_info_list, key=lambda x: x['date']
+                )
 
     return sorted_users_info_list
