@@ -1,5 +1,5 @@
 def filter_by_state(
-    users_info_list: list, state: str = "EXECUTED", parameter_sort: bool = True
+    users_info_list: list, state: str = "EXECUTED"
 ) -> list:
     """функция, которая принимает список словарей и опционально значение для ключа state
     (по умолчанию 'EXECUTED'). Функция возвращает новый список словарей, содержащий только те
@@ -17,7 +17,7 @@ def filter_by_state(
         # если значение ключа "state" == 'EXECUTED'
         # и мы хотим сортировать список, то
         # добавляем данный словарь в список state_executed
-        if state == state_data and parameter_sort == True:
+        if state == state_data:
             state_list.append(users_info_list[index])
 
     return state_list
