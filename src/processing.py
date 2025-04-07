@@ -13,11 +13,11 @@ def filter_by_state(
         index = users_info_list.index(item)
         # используем метод get и создаём переменную state,
         # чтобы иметь доступ к значениям словаря
-        state_ = users_info_list[index].get("state")
+        state_data = users_info_list[index].get("state")
         # если значение ключа "state" == 'EXECUTED'
         # и мы хотим сортировать список, то
         # добавляем данный словарь в список state_executed
-        if state == state_ and parameter_sort == True:
+        if state == state_data and parameter_sort == True:
             state_list.append(users_info_list[index])
 
     return state_list
