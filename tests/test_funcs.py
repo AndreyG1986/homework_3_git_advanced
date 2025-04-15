@@ -2,7 +2,7 @@ import pytest
 import re
 from src.masks import get_mask_card_number, get_mask_account
 from src.widget import mask_account_card, get_date
-
+from src.processing import filter_by_state,sort_by_date
 
 # честно говоря я не знаю как это работает (5-10 строки), но другого решения я не нашел
 # особенно то что в скобках в 5ой строке непонятно
@@ -47,10 +47,9 @@ def test_get_mask_account(number, expected_exception):
     else:
         assert get_mask_account(number) == "**4305"
 
-# @pytest.fixture
-# def some_account_number():
-#     return "**5560"
+
 # Так, вот эта история покамест не работает
+# Честное слово, не знаю что с этим делать
 # @pytest.mark.parametrize("account_number, expected_account_num",
 #                          [("Счёт 35383033474447895560", "**5560")]
 #                          )
@@ -73,3 +72,9 @@ def test_date_format_validity(date_info, expected_exception):
     if not re.match(r"^\d{4}-\d{2}-\d{2}T", date_info) and expected_exception:
         with pytest.raises(ValueError, match = "Неверный формат даты"):
             get_date(date_info)
+
+def test_sort_by_state(unsorted_list_of_transactions,executed_list):
+    assert filter_by_state(unsorted_list_of_transactions)==executed_list
+
+def test_sort_by_date(unsorted_list_of_transactions, sorted_by_day_list):
+    assert sorted_by_day_list, sort_by_date(unsorted_list_of_transactions)==sorted_by_day_list
