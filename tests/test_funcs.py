@@ -1,5 +1,8 @@
 import pytest
+import re
 from src.masks import get_mask_card_number, get_mask_account
+from src.widget import mask_account_card, get_date
+
 
 # честно говоря я не знаю как это работает (5-10 строки), но другого решения я не нашел
 # особенно то что в скобках в 5ой строке непонятно
@@ -43,3 +46,30 @@ def test_get_mask_account(number, expected_exception):
             get_mask_account(number)
     else:
         assert get_mask_account(number) == "**4305"
+
+# @pytest.fixture
+# def some_account_number():
+#     return "**5560"
+# Так, вот эта история покамест не работает
+# @pytest.mark.parametrize("account_number, expected_account_num",
+#                          [("Счёт 35383033474447895560", "**5560")]
+#                          )
+# def test_check_account_number(account_number, expected_account_num):
+#     assert mask_account_card(account_number) == expected_account_num
+
+# -----------------------------
+
+@pytest.mark.parametrize("date_info, expected_date",
+    [("2025-02-11T02:26:18.671407", "11.02.2025")]
+    )
+def test_check_date_reformat(date_info,expected_date):
+    assert get_date(date_info) == expected_date
+
+
+@pytest.mark.parametrize("date_info, expected_exception",
+    [("43563456346", ValueError)]
+    )
+def test_date_format_validity(date_info, expected_exception):
+    if not re.match(r"^\d{4}-\d{2}-\d{2}T", date_info) and expected_exception:
+        with pytest.raises(ValueError, match = "Неверный формат даты"):
+            get_date(date_info)
