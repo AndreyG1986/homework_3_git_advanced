@@ -1,6 +1,4 @@
-def filter_by_state(
-    users_info_list: list, state: str = "EXECUTED"
-) -> list:
+def filter_by_state(users_info_list: list, state: str = "EXECUTED") -> list:
     """функция, которая принимает список словарей и опционально значение для ключа state
     (по умолчанию 'EXECUTED'). Функция возвращает новый список словарей, содержащий только те
     словари, у которых ключ state соответствует указанному значению."""
@@ -38,9 +36,7 @@ def sort_by_date(users_info_list: list, parameter_sort_reverse: bool = True) -> 
         # `lambda`, которая говорит `sorted()`,
         # что сортировать нужно по значению ключа `'date'` в каждом словаре.
         if parameter_sort_reverse == True:
-            sorted_users_info_list = sorted(
-                users_info_list, key=lambda x: x["date"], reverse=True
-            )
+            sorted_users_info_list = sorted(users_info_list, key=lambda x: x["date"], reverse=True)
         else:
             sorted_users_info_list = sorted(users_info_list, key=lambda x: x["date"])
 

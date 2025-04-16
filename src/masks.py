@@ -9,11 +9,11 @@ def get_mask_card_number(num: Union[str, int]) -> str:
     for symbol in num:
         symbol_counter += 1
     if symbol_counter == 16:
-        new_string = num[0:4] + " " + num[4:6] + "** " + "**** "+ num[12:]
+        new_string = num[0:4] + " " + num[4:6] + "** " + "**** " + num[12:]
     else:
         raise ValueError("Некорректное число символов. Должно быть 16 цифр без пробелов и букв")
 
-    if any(char.isalpha() or char==" " for char in num):
+    if any(char.isalpha() or char == " " for char in num):
         raise ValueError("Некорректный тип символов. Должно быть 16 цифр без пробелов и букв")
 
     return new_string
@@ -29,7 +29,7 @@ def get_mask_account(num: Union[str, int]) -> str:
     else:
         raise ValueError("Некорректное число символов. Должно быть 20 цифр без пробелов и букв")
 
-    if any(char.isalpha() or char==" " for char in num):
+    if any(char.isalpha() or char == " " for char in num):
         raise ValueError("Некорректный тип символов. Должно быть 20 цифр без пробелов и букв")
 
     return mask_account

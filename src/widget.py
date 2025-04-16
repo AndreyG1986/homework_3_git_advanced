@@ -1,5 +1,6 @@
-from typing import Union
 import re
+from typing import Union
+
 
 def mask_account_card(some_card_number: Union[str]) -> str:
     """Функция mask_account_card принимает на вход номер карты в виде
