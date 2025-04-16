@@ -7,8 +7,6 @@ from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
 
 
-# честно говоря я не знаю как это работает (5-10 строки), но другого решения я не нашел
-# особенно то что в скобках в 5ой строке непонятно
 @pytest.mark.parametrize("numbers", ["123456789012345", "12345678901234"])
 def test_get_mask_card_number_check_qty_symbols(numbers):
     with pytest.raises(ValueError) as exc_info:
@@ -96,3 +94,7 @@ def test_sort_by_state(unsorted_list_of_transactions, executed_list):
 
 def test_sort_by_date(unsorted_list_of_transactions, sorted_by_day_list):
     assert sorted_by_day_list, sort_by_date(unsorted_list_of_transactions) == sorted_by_day_list
+
+
+def test_sort_by_date_ascending(unsorted_list_of_transactions, sorted_by_day_list):
+    assert sort_by_date(unsorted_list_of_transactions, False) == sorted_by_day_list[::-1]
