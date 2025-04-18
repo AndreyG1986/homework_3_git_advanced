@@ -1,3 +1,4 @@
+import re
 from typing import Union
 
 
@@ -37,6 +38,8 @@ def get_date(some_date: Union[str]) -> str:
     month = ""
     day = ""
 
+    if not re.match(r"^\d{4}-\d{2}-\d{2}T", some_date):
+        raise ValueError("Неверный формат даты")
     for index in range(0, 10):
         date += some_date[index]
 
