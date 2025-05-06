@@ -1,3 +1,6 @@
+from typing import Generator
+
+
 transactions = [
     {
         "id": 939719570,
@@ -88,17 +91,22 @@ XXXX XXXX XXXX XXXX, где X — цифра номера карты.
 Генератор должен принимать начальное и конечное значения для генерации диапазона номеров."""
 
 
-def card_number_generator(start, end):
-    template = "0000 0000 0000 000"
-    generated_card_numbers = [template + str(n) for n in range(start, end)]
-    for card_number in generated_card_numbers:
+# def card_number_generator(start, end):
+#     template = "0000 0000 0000 000"
+#     generated_card_numbers = [template + str(n) for n in range(start, end)]
+#     for card_number in generated_card_numbers:
+#
+#         yield card_number
 
-        yield card_number
+
+def card_number_generator(start: int, end: int) -> Generator:
+    for n in range(start, end + 1):
+        card_number = str(n).zfill(16)
+        formatted_card = " ".join([card_number[i : i + 4] for i in range(0, 16, 4)])
+        yield formatted_card
 
 
 if __name__ == "__main__":
-    generator = card_number_generator(4, 8)
-    print(next(generator))
-    print(next(generator))
-    print(next(generator))
-    print(next(generator))
+    generator = card_number_generator(1, 5)
+    for i in generator:
+        print(i)
