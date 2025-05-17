@@ -1,25 +1,26 @@
 import time
-from time import time
 from functools import wraps
+from time import time
+
 
 def log(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         """Данная функция создана для изменения результата другой функции
         (входящей сюда в качестве аргумента)"""
-        print(f'Function {func.__name__} started')
+        print(f"Function {func.__name__} started")
         for arg in args or kwargs:
             if arg <= 0:
-                raise ValueError ("All arguments must be positive integers")
+                raise ValueError("All arguments must be positive integers")
         result = func(*args, **kwargs)
         print(f"Функция {func.__name__} дала результат {result}")
-        print(f'Function {func.__name__} finished')
+        print(f"Function {func.__name__} finished")
         return result
 
     return wrapper
 
 
-#Пример из курса
+# Пример из курса
 # def printing(func):
 #     @wraps(func)
 #     def wrapper(*args, **kwargs) :
@@ -29,6 +30,7 @@ def log(func):
 #           return result
 #     return wrapper
 
+
 def timer(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -37,14 +39,17 @@ def timer(func):
         time_1 = time()
         result = func(*args, **kwargs)
         time_2 = time()
-        print(f'Time for work: {time_2 - time_1}')
+        print(f"Time for work: {time_2 - time_1}")
         return result
+
     return wrapper
+
 
 @timer
 @log
 def multiplier(a, b):
     return a * b
+
 
 if __name__ == "__main__":
     print(multiplier(0, 5))
@@ -73,4 +78,3 @@ if __name__ == "__main__":
 #             raise Exception('Function call failed after multiple retries.')
 #         return inner
 #     return wrapper
-
