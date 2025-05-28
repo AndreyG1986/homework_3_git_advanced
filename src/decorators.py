@@ -52,7 +52,7 @@ def multiplier(a, b):
 
 
 if __name__ == "__main__":
-    print(multiplier(0, 5))
+    print(multiplier(3, 5))
 
 # def example():
 #     for i in range (100000000):
@@ -78,3 +78,37 @@ if __name__ == "__main__":
 #             raise Exception('Function call failed after multiple retries.')
 #         return inner
 #     return wrapper
+
+def log(filename=None):
+    def inner(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            try:
+                result = func(*args, **kwargs)
+            except Exception as e:
+                if filename:
+                    with open(filename, 'a') as file:
+                        file.write(f"Ошибка в {func.__name__}: {e}. Входные данные: {args}, {kwargs}\n")
+                else:
+                    print(f"Ошибка в {func.__name__}: {e}. Входные данные: {args}, {kwargs}")
+                raise
+            else:
+                if filename:
+                    with open(filename, 'a') as file:
+                        file.write(f"Функция {func.__name__} ок. Результат {result}\n")
+                else:
+                    print(f"Функция {func.__name__} ок. Результат {result}")
+                return result
+        return wrapper
+    return inner
+
+# @log('my_log.txt')
+@log()
+def summator(a, b):
+    return a + b
+
+# result = summator(2, 5)
+
+# ну и тут по идее должны что-то проверить, но пока ничего не работает
+if __name__ == "__main__":
+    print(summator(1, 5))
