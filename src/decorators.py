@@ -79,36 +79,42 @@ if __name__ == "__main__":
 #         return inner
 #     return wrapper
 
+
 def log(filename=None):
     def inner(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
+            # Если всё правильно, то выполняем то, что в try
             try:
                 result = func(*args, **kwargs)
+            # Если ошибка выполняется то что в except
             except Exception as e:
-                if filename:
-                    with open(filename, 'a') as file:
-                        file.write(f"Ошибка в {func.__name__}: {e}. Входные данные: {args}, {kwargs}\n")
-                else:
-                    print(f"Ошибка в {func.__name__}: {e}. Входные данные: {args}, {kwargs}")
-                raise
+                msg = f"{func.__name__} error: {e.__class__.__name__}. Inputs: {args}, {kwargs}"
+                raise e
+            # В противном случае отправляем в консоль сообщение
             else:
+                msg = f"{func.__name__} ok"
+            # Если filename задан, то выполняется finally
+            finally:
                 if filename:
-                    with open(filename, 'a') as file:
-                        file.write(f"Функция {func.__name__} ок. Результат {result}\n")
+                    with open(filename, "a") as file:
+                        file.write(f"{msg}\n")
                 else:
-                    print(f"Функция {func.__name__} ок. Результат {result}")
-                return result
+                    print(msg)
+
         return wrapper
+
     return inner
 
-# @log('my_log.txt')
-@log()
+
+@log("my_log.txt")
+# @log()
 def summator(a, b):
     return a + b
+
 
 # result = summator(2, 5)
 
 # ну и тут по идее должны что-то проверить, но пока ничего не работает
 if __name__ == "__main__":
-    print(summator(1, 5))
+    print(summator(7, 5))
