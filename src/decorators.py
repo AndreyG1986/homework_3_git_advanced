@@ -20,17 +20,6 @@ def log(func):
     return wrapper
 
 
-# Пример из курса
-# def printing(func):
-#     @wraps(func)
-#     def wrapper(*args, **kwargs) :
-#           print(f'Function {func} started')
-#           result = func(*args, **kwargs)
-#           print(f'Function {func} finished')
-#           return result
-#     return wrapper
-
-
 def timer(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -53,31 +42,6 @@ def multiplier(a, b):
 
 if __name__ == "__main__":
     print(multiplier(3, 5))
-
-# def example():
-#     for i in range (100000000):
-#         continue
-#
-# example()
-
-# Напишите декоратор, который повторно вызывает декорируемую функцию
-# заданное количество раз через заданное время,
-# если произошла ошибка. Параметры, передаваемые в декоратор,
-# обязательно должны быть именованными.
-
-
-# def retry(*, retries=3, delay=3):
-#     def wrapper(func):
-#         @wraps(func)
-#         def inner(*args, **kwargs):
-#             for i in range(retries):
-#                 try:
-#                     return func(*args, **kwargs)
-#                 except:
-#                     time.sleep(delay)
-#             raise Exception('Function call failed after multiple retries.')
-#         return inner
-#     return wrapper
 
 
 def log(filename=None):
@@ -112,9 +76,5 @@ def log(filename=None):
 def summator(a, b):
     return a + b
 
-
-# result = summator(2, 5)
-
-# ну и тут по идее должны что-то проверить, но пока ничего не работает
 if __name__ == "__main__":
     print(summator(7, 5))
