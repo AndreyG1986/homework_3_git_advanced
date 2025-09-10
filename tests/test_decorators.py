@@ -17,8 +17,3 @@ def test_log_error():
     with pytest.raises(ValueError, match="All arguments must be positive integers"):
         multiplier(3, 0)
 
-
-# Не знаю как протестировать время
-# @timer
-# def timer(func):
-#     pass

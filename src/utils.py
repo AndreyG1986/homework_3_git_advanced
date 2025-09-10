@@ -6,8 +6,6 @@ PATH_TO_FILE = Path(__file__).parent.parent / "data" / "operations.json"
 
 def get_list_of_transactions(path: str):
     """Получение списка транзакций из json файла"""
-    sum_of_transactions = 0.0
-    currency_from = []
 
     try:
         with path.open("r", encoding="utf-8-sig") as operations_file:

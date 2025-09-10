@@ -20,5 +20,4 @@ def test_get_list_of_transactions_success(path, test_data):
 
             # Проверяем результаты
             assert result == test_data
-            # mock_file.assert_called_once_with(path, "r", encoding="utf-8-sig")
             mock_json_load.assert_called_once()
