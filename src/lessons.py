@@ -1,7 +1,5 @@
-from functools import reduce
-from functools import wraps
-from time import perf_counter
-from time import sleep
+from functools import reduce, wraps
+from time import perf_counter, sleep
 
 def timeit(func):
     @wraps(func)

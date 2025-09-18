@@ -1,4 +1,0 @@
-summator ok
-summator error: TypeError. Inputs: (1, '5'), {}
-summator ok
-summator ok
