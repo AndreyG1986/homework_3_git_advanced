@@ -8,7 +8,7 @@ LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 # Настройка логирования: пишем и в файл, и в консоль
 logging.basicConfig(
-    level=logging.INFO,
+    level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[logging.FileHandler(LOG_DIR / "utils.log", mode="w", encoding="utf-8"), logging.StreamHandler()],
 )
