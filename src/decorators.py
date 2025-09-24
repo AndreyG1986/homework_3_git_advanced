@@ -1,4 +1,3 @@
-import time
 from functools import wraps
 from time import time
 
@@ -75,6 +74,7 @@ def log(filename=None):
 # @log()
 def summator(a, b):
     return a + b
+
 
 if __name__ == "__main__":
     print(summator(7, 5))

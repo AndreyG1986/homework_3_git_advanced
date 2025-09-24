@@ -1,6 +1,5 @@
 from typing import Generator
 
-
 transactions = [
     {
         "id": 939719570,
