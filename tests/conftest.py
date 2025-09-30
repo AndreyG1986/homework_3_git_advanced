@@ -155,3 +155,69 @@ def test_data():
 @pytest.fixture
 def path():
     return Path(__file__).parent.parent / "data" / "operations.json"
+
+
+@pytest.fixture
+def list_for_csv():
+    return [
+        {
+            "id": 1,
+            "state": "EXECUTED",
+            "date": "2021-01-01T00:00:00Z",
+            "amount": 100.0,
+            "currency_name": "Sol",
+            "currency_code": "PEN",
+            "from": "Счет 11112222333344445555",
+            "to": "Счет 11112222333344445555",
+            "description": "test",
+        },
+        {
+            "id": 2,
+            "state": "EXECUTED",
+            "date": "2021-01-01T00:00:00Z",
+            "amount": 100.0,
+            "currency_name": "Peso",
+            "currency_code": "COP",
+            "from": "Discover 1111222233334444",
+            "to": "Discover 1111222233334444",
+            "description": "Перевод с карты на карту",
+        },
+    ]
+
+
+@pytest.fixture
+def list_for_xl():
+    return [
+        {
+            "id": 650703.0,
+            "state": "EXECUTED",
+            "date": "2023-09-05T11:30:32Z",
+            "amount": 16210.0,
+            "currency_name": "Sol",
+            "currency_code": "PEN",
+            "from": "Счет 58803664561298323391",
+            "to": "Счет 39745660563456619397",
+            "description": "Перевод организации",
+        },
+        {
+            "id": 3598919.0,
+            "state": "EXECUTED",
+            "date": "2020-12-06T23:00:58Z",
+            "amount": 29740.0,
+            "currency_name": "Peso",
+            "currency_code": "COP",
+            "from": "Discover 3172601889670065",
+            "to": "Discover 0720428384694643",
+            "description": "Перевод с карты на карту",
+        },
+    ]
+
+
+@pytest.fixture
+def path_to_file_csv():
+    return "../data/transactions.csv"
+
+
+@pytest.fixture
+def path_to_file_xl():
+    return "../data/transactions_excel.xlsx"
