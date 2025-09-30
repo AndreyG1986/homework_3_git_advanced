@@ -161,10 +161,26 @@ def path():
 def list_for_csv():
     return [
         {
-            "id;state;date;amount;currency_name;currency_code;from;to;description": "650703;EXECUTED;2023-09-05T11:30:32Z;16210;Sol;PEN;Счет 58803664561298323391;Счет 39745660563456619397;Перевод организации"
+            "id": 1,
+            "state": "EXECUTED",
+            "date": "2021-01-01T00:00:00Z",
+            "amount": 100.0,
+            "currency_name": "Sol",
+            "currency_code": "PEN",
+            "from": "Счет 11112222333344445555",
+            "to": "Счет 11112222333344445555",
+            "description": "test",
         },
         {
-            "id;state;date;amount;currency_name;currency_code;from;to;description": "3598919;EXECUTED;2020-12-06T23:00:58Z;29740;Peso;COP;Discover 3172601889670065;Discover 0720428384694643;Перевод с карты на карту"
+            "id": 2,
+            "state": "EXECUTED",
+            "date": "2021-01-01T00:00:00Z",
+            "amount": 100.0,
+            "currency_name": "Peso",
+            "currency_code": "COP",
+            "from": "Discover 1111222233334444",
+            "to": "Discover 1111222233334444",
+            "description": "Перевод с карты на карту",
         },
     ]
 
@@ -196,9 +212,11 @@ def list_for_xl():
         },
     ]
 
+
 @pytest.fixture
 def path_to_file_csv():
     return "../data/transactions.csv"
+
 
 @pytest.fixture
 def path_to_file_xl():
